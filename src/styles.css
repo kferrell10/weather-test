@@ -90,7 +90,7 @@ a:hover {
   color: rgba(8, 4, 61, 0.692);
 }
 
-a:hover .mousetype {
+a:hover.mousetype {
   color: rgba(140, 244, 252, 0.692);
 }
 
