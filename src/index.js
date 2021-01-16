@@ -56,8 +56,11 @@ function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#current-temp");
   let locationElement = document.querySelector("#current-location");
+  let pressure = response.data.main.pressure;
+  let pressureElement = document.querySelector("#pressure");
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
+  pressureElement.innerHTML = `${pressure}`;
 
 }
 
