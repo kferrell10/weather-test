@@ -49,6 +49,8 @@ currentTime.innerHTML = `${day} / ${hours}:${minutes}`;
 let apiKey = "f3711ec096b8e2b5d745c777afc03d71";
 let units = "imperial";
 let city = "London"
+let pressure = response.data.main.pressure;
+
 let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
 let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
 
@@ -56,16 +58,14 @@ function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#current-temp");
   let locationElement = document.querySelector("#current-location");
-  let pressure = response.data.main.pressure;
-  let pressureElement = document.querySelector("#pressure");
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
-  pressureElement.innerHTML = `${pressure}`;
-
 }
 
 let loadtemp = document.querySelector("#current-temp");
 loadtemp.innerHTML = `${showTemp}`;  // replace with current temperature in London England
+let loadPressure = document.querySelector("#pressure");
+pressureElement.innerHTML = `${pressure}`; // replace with current pressure in London England
 
 axios.get(`${apiUrl}`).then(showTemp);
 
