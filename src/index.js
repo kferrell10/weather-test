@@ -58,6 +58,9 @@ function showTemp(response) {
   let locationElement = document.querySelector("#current-location");
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
+  document.querySelector("#pressure").innerHTML = response.data.main.pressure;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
 }
 
 let loadtemp = document.querySelector("#current-temp");
