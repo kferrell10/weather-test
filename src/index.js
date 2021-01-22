@@ -53,14 +53,19 @@ let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
 let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
 
 function showTemp(response) {
+  console.log(response.data);
+
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#current-temp");
   let locationElement = document.querySelector("#current-location");
   let conditionElement = document.querySelector("#conditions");
+  let iconElement = document.querySelector("#icon");
   
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
   conditionElement.innerHTML = `${response.data.weather[0].description}`;
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
@@ -74,6 +79,11 @@ axios.get(`${apiUrl}`).then(showTemp);
 // display input search data 
 
 function displayTemp(response) {
+  let iconElement = document.querySelector("#icon");
+
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
   document.querySelector("#current-location").innerHTML = response.data.name;
   document.querySelector("#current-temp").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
