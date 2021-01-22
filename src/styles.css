@@ -25,10 +25,11 @@ h1 {
   font-family: "EB Garamond", serif;
   text-align: left;
   font-weight: 400;
+  font-size: 130px;
+  line-height: 100px;
   color: #404040;
   margin: 0;
-  font-size: 140px;
-  padding: 0px;
+  padding: 0;
 }
 
 h2 {
@@ -53,6 +54,7 @@ h5 {
 p {
   font-family: "Parisienne", cursive;
   font-size: 36px;
+  line-height: 36px;
 }
 
 ul {
