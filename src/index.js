@@ -56,8 +56,11 @@ function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#current-temp");
   let locationElement = document.querySelector("#current-location");
+  let conditionElement = document.querySelector("#conditions");
+  
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
+  conditionElement.innerHTML = `${response.data.weather[0].description}`;
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
@@ -76,7 +79,7 @@ function displayTemp(response) {
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
-
+  document.querySelector("#conditions").innerHTML = response.data.weather[0].description;
 }
 
 function search(event) {

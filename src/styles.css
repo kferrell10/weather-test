@@ -27,7 +27,8 @@ h1 {
   font-weight: 400;
   color: #404040;
   margin: 0;
-  font-size: 130px;
+  font-size: 140px;
+  padding: 0px;
 }
 
 h2 {
@@ -51,7 +52,7 @@ h5 {
 
 p {
   font-family: "Parisienne", cursive;
-  font-size: 24px;
+  font-size: 36px;
 }
 
 ul {
@@ -67,6 +68,10 @@ li {
   padding: 0px;
   text-decoration: none;
   list-style-type: none;
+}
+
+p:first-letter {
+  text-transform: capitalize;
 }
 
 #units {
@@ -87,7 +92,7 @@ a {
 }
 
 a:hover {
-  color: rgba(140, 244, 252, 0.692);
+  color: rgba(75, 74, 71, 0.692);
 }
 
 .garamond {
