@@ -90,7 +90,7 @@ p:first-letter {
 
 a {
   text-decoration: none;
-  color: rgb(184, 181, 181);
+  color: rgb(39, 103, 155);
 }
 
 a:hover {
@@ -176,8 +176,4 @@ input {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-variant-caps: all-petite-caps;
   letter-spacing: 2px;
-}
-
-footer {
-  background-color: #404040;
 }
