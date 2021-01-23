@@ -97,11 +97,25 @@ p:first-letter {
 
 a {
   text-decoration: none;
+}
+
+a:link {
   color: rgb(39, 103, 155);
 }
 
+a:visited {
+  color: rgb(39, 103, 155);
+}
+
+a:focus {
+}
+
 a:hover {
-  color: rgba(75, 74, 71, 0.692);
+  color: #404040;
+}
+
+a:active {
+  color: #621c74;
 }
 
 .garamond {

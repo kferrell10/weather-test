@@ -47,7 +47,7 @@ currentTime.innerHTML = `${day} / ${hours}:${minutes}`;
 // set on load city and temp for London
 
 let apiKey = "f3711ec096b8e2b5d745c777afc03d71";
-let units = "imperial";
+let units = "metric";
 let city = "London"
 let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
 let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
@@ -60,6 +60,8 @@ function showTemp(response) {
   let locationElement = document.querySelector("#current-location");
   let conditionElement = document.querySelector("#conditions");
   let iconElement = document.querySelector("#icon");
+
+  celsiusTemp = response.data.main.temp;
   
   temperatureElement.innerHTML = `${temperature}`;
   locationElement.innerHTML = `${city}`;
@@ -84,6 +86,8 @@ function displayTemp(response) {
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
+  celsiusTemp = response.data.main.temp;
+
   document.querySelector("#current-location").innerHTML = response.data.name;
   document.querySelector("#current-temp").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#pressure").innerHTML = response.data.main.pressure;
@@ -95,13 +99,24 @@ function displayTemp(response) {
 function search(event) {
   event.preventDefault();
   let city = document.querySelector("#search-text-input").value;
-  let units = "imperial";
+  let units = "metric";
   let apiKey = "f3711ec096b8e2b5d745c777afc03d71";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   console.log(apiUrl);
   axios.get(`${apiUrl}`).then(displayTemp);
 }
 
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemp * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let celsiusTemp = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
