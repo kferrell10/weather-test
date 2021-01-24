@@ -108,9 +108,17 @@ function search(event) {
 
 function displayFahrenheitTemp(event) {
   event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemp * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#current-temp");
+  // remove the active class on the celsius link
+  // celsiusLink.classList.remove("active");
+  let fahrenheitTemperature = (celsiusTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
 
 let celsiusTemp = null;
@@ -120,3 +128,6 @@ form.addEventListener("submit", search);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);

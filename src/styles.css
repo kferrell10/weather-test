@@ -55,6 +55,7 @@ p {
   font-family: "Parisienne", cursive;
   font-size: 36px;
   line-height: 36px;
+  color: #918c8c;
 }
 
 ul {
@@ -78,7 +79,7 @@ p:first-letter {
 
 #units {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 36px;
+  font-size: 32px;
   color: #4f487e;
 }
 
@@ -97,25 +98,16 @@ p:first-letter {
 
 a {
   text-decoration: none;
+  color: rgb(94, 136, 170);
 }
 
-a:link {
-  color: rgb(39, 103, 155);
-}
-
-a:visited {
-  color: rgb(39, 103, 155);
-}
-
-a:focus {
-}
-
+a:focus,
 a:hover {
-  color: #404040;
+  color: #141214;
 }
 
 a:active {
-  color: #621c74;
+  color: #1d1c1c;
 }
 
 .garamond {
