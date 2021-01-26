@@ -53,7 +53,6 @@ let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
 let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
 
 function showTemp(response) {
-  console.log(response.data);
 
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#current-temp");
@@ -78,6 +77,9 @@ loadtemp.innerHTML = `${showTemp}`;  // replace with current temperature in Lond
 
 axios.get(`${apiUrl}`).then(showTemp);
 
+apiUrl =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(displayForecast);
+// display 3 hour forecast on load by calling function below displayforecast
 // display input search data 
 
 function displayTemp(response) {
@@ -96,6 +98,23 @@ function displayTemp(response) {
   document.querySelector("#conditions").innerHTML = response.data.weather[0].description;
 }
 
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+
+  forecastElement.innerHTML = `
+  <div class="col-2">
+    <h3>${hours}:${minutes}</h3>
+    <img 
+      src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+    />
+    <div class="forecast-temp">
+      <strong>${Math.round(forecast.main.temp_max)}˚</strong> ${Math.round(forecast.main.temp_min)}˚
+    </div>
+  </div>`;
+  
+}
+
 function search(event) {
   event.preventDefault();
   let city = document.querySelector("#search-text-input").value;
@@ -104,6 +123,9 @@ function search(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   console.log(apiUrl);
   axios.get(`${apiUrl}`).then(displayTemp);
+
+  apiUrl =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayFahrenheitTemp(event) {
