@@ -42,7 +42,21 @@ let month = months[now.getMonth()];
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = `${month} ${date}, ${year}`;
 let currentTime = document.querySelector("#current-time");
-currentTime.innerHTML = `${day} / ${hours}:${minutes}`;
+currentTime.innerHTML = `${day} / ${formatHours(timestamp)}`;
+
+function formatHours(timestamp) {
+  let date = now.getDate();
+  let hours = now.getHours();
+  if (hours < 10) {
+      hours = `0${hours}`;
+    }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+
+  return `${hours}:${minutes}`;
+}
 
 // set on load city and temp for London
 
@@ -104,7 +118,7 @@ function displayForecast(response) {
 
   forecastElement.innerHTML = `
   <div class="col-2">
-    <h3>${hours}:${minutes}</h3>
+    <h3>${formatHours(forecast.dt * 1000)}</h3>
     <img 
       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
     />
