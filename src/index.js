@@ -1,5 +1,4 @@
 // set date and time on load
-
 let now = new Date();
 
 let date = now.getDate();
@@ -102,18 +101,31 @@ function displayTemp(response) {
 }
 
 // Forecast Panel
+function formatForecastHours(timestamp) {
+
+  let hours = now.getHours();
+  if (hours < 10) {
+      hours = `0${hours}`;
+    }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+  }
+  return `${hours}:${minutes}`;
+
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  // allows for loop of arrray to display 6x intervals array returns, in this case 3 hour
+// allows for loop of arrray to display 6x intervals array returns, in this case 3 hour
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
     <div class="col-2">
-      <h3>${forecast.dt}</h3>
+      <h3>${formatForecastHours(forecast.dt * 1000)}</h3>
         <img 
           src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
         />
