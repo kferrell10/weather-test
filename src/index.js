@@ -105,6 +105,7 @@ function displayTemp(response) {
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
   let forecast = null;
 
   // allows for loop of arrray to display 6x intervals array returns, in this case 3 hour
@@ -112,7 +113,7 @@ function displayForecast(response) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
     <div class="col-2">
-      <h3>${hours}:${minutes}</h3>
+      <h3>${forecast.dt}</h3>
         <img 
           src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
         />
