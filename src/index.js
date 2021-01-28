@@ -41,22 +41,10 @@ let month = months[now.getMonth()];
 
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = `${month} ${date}, ${year}`;
+let currentDay = document.querySelector("#current-day");
+currentDay.innerHTML = `${day}, `;
 let currentTime = document.querySelector("#current-time");
-currentTime.innerHTML = `${day} / ${formatHours(timestamp)}`;
-
-function formatHours(timestamp) {
-  let date = now.getDate();
-  let hours = now.getHours();
-  if (hours < 10) {
-      hours = `0${hours}`;
-    }
-  let minutes = now.getMinutes();
-  if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
-
-  return `${hours}:${minutes}`;
-}
+currentTime.innerHTML = `${hours}:${minutes}`;
 
 // set on load city and temp for London
 
@@ -93,6 +81,7 @@ axios.get(`${apiUrl}`).then(showTemp);
 
 apiUrl =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(displayForecast);
+
 // display 3 hour forecast on load by calling function below displayforecast
 // display input search data 
 
@@ -112,21 +101,27 @@ function displayTemp(response) {
   document.querySelector("#conditions").innerHTML = response.data.weather[0].description;
 }
 
+// Forecast Panel
+
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  let forecast = response.data.list[0];
+  let forecast = null;
 
-  forecastElement.innerHTML = `
-  <div class="col-2">
-    <h3>${formatHours(forecast.dt * 1000)}</h3>
-    <img 
-      src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-    />
-    <div class="forecast-temp">
-      <strong>${Math.round(forecast.main.temp_max)}˚</strong> ${Math.round(forecast.main.temp_min)}˚
+  // allows for loop of arrray to display 6x intervals array returns, in this case 3 hour
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h3>${hours}:${minutes}</h3>
+        <img 
+          src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+        />
+      <div class="forecast-temp">
+        <strong>${Math.round(forecast.main.temp_max)}˚</strong> ${Math.round(forecast.main.temp_min)}˚
+      </div>
     </div>
-  </div>`;
-  
+  `;
+  }   
 }
 
 function search(event) {
