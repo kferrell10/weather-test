@@ -87,7 +87,12 @@ p:first-letter {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 30px;
+  padding-top: 50px;
+}
+
+#conditions {
+  padding-top: 15px;
+  text-align: center;
 }
 
 .light {
@@ -113,24 +118,6 @@ a:active {
 .garamond {
   font-family: "EB Garamond", serif;
   font-size: 24px;
-  font-variant-caps: all-petite-caps;
-  letter-spacing: 2px;
-}
-
-#quote {
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  letter-spacing: 2px;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-#author {
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  letter-spacing: 2px;
-  padding-bottom: 5px;
-  text-align: center;
   font-variant-caps: all-petite-caps;
   letter-spacing: 2px;
 }
